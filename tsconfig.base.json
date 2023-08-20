@@ -15,8 +15,44 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@meetjs-2023-nx-remote-caching/business/travel/book-form": [
+        "libs/business/travel/book-form/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/business/travel/gallery": [
+        "libs/business/travel/gallery/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/business/vacation/scheduler": [
+        "libs/business/vacation/scheduler/src/index.ts"
+      ],
       "@meetjs-2023-nx-remote-caching/remote-cache": [
-        "libs/remote-cache/src/index.ts"
+        "remote-cache/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/advanced/card": [
+        "libs/share/advanced/card/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/advanced/menu": [
+        "libs/share/advanced/menu/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/advanced/modal": [
+        "libs/share/advanced/modal/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/core/button": [
+        "libs/share/core/button/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/core/icon": [
+        "libs/share/core/icon/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/core/label": [
+        "libs/share/core/label/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/core/tag": [
+        "libs/share/core/tag/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/form/checkbox": [
+        "libs/share/form/checkbox/src/index.ts"
+      ],
+      "@meetjs-2023-nx-remote-caching/share/form/input": [
+        "libs/share/form/input/src/index.ts"
       ]
     }
   },

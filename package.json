@@ -6,9 +6,9 @@
     "deploy:locally": "ts-node ./tools/deploy-remote-cache/index.ts",
     "build:remote-cache": "yarn nx build remote-cache",
     "watch:remote-cache": "yarn build:remote-cache --watch",
-    "build:app": "yarn nx build test",
-    "build:app:default": "yarn nx build test --runner=customDefault",
-    "build:app:aws": "yarn nx build test --runner=customAws"
+    "build:app": "yarn nx build booking --parallel=20",
+    "build:app:default": "yarn build:app --runner=customDefault",
+    "build:app:aws": "yarn build:app --runner=customAws"
   },
   "private": true,
   "dependencies": {
@@ -17,6 +17,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@nx/devkit": "16.7.2",
     "@nx/eslint-plugin": "16.7.2",
     "@nx/js": "16.7.2",
@@ -48,6 +50,7 @@
     "tslib": "2.6.2",
     "typescript": "5.1.6",
     "vite": "4.3.9",
+    "vite-plugin-dts": "~2.3.0",
     "vitest": "0.32.0"
   }
 }

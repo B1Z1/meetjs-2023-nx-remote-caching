@@ -1,0 +1,29 @@
+{
+  "name": "remote-cache",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/remote-cache",
+        "main": "remote-cache/src/index.ts",
+        "tsConfig": "remote-cache/tsconfig.lib.json",
+        "assets": ["remote-cache/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "remote-cache/**/*.ts",
+          "remote-cache/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
