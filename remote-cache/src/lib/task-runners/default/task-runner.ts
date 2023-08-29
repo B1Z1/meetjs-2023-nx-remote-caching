@@ -6,7 +6,8 @@ export function taskRunner(
 	options: Parameters<typeof defaultTasksRunner>[1],
 	context: Parameters<typeof defaultTasksRunner>[2]
 ): string {
-	const logger = new Logger('AWS');
+	const verboseLogging: boolean = process.env['NX_CACHE_VERBOSE_LOGGING'] === 'true';
+	const logger: Logger = new Logger('AWS', verboseLogging);
 
 	return defaultTasksRunner(tasks, options, context);
 }

@@ -1,1 +1,1 @@
-export { taskRunner as default } from '../../src/lib/implementations/default/task-runner';
+export { taskRunner as default } from '../../src/lib/task-runners/default/task-runner';

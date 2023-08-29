@@ -4,12 +4,13 @@ type LogType = 'log' | 'warn' | 'error';
 
 export class Logger {
 	constructor(
-		private readonly prefix: string
+		private readonly prefix: string,
+		private readonly verbose: boolean
 	) {
 	}
 
 	debug(message: string): void {
-		if (!process.env['NX_CACHE_VERBOSE_LOGGING']) {
+		if (!this.verbose) {
 			return;
 		}
 

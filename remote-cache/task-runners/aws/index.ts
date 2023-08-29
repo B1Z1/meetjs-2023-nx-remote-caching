@@ -1,1 +1,1 @@
-export { taskRunner as default } from '../../src/lib/implementations/aws/task-runner';
+export { taskRunner as default } from '../../src/lib/task-runners/aws/task-runner';
