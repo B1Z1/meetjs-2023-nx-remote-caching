@@ -4,9 +4,15 @@ import { AwsConfig } from './AwsConfig';
 import { config as dotEnvConfiguration } from 'dotenv';
 import * as process from 'process';
 import { DefaultTaskRunnerOutput } from '../../util/DefaultTaskRunnerOutput';
+import { AwsCacheRunner } from './AwsCacheRunner';
 
 dotEnvConfiguration();
 
+/**
+ * This function will resolve the config from the environment variables.
+ * If the environment variable is not set, it will use the value from the
+ * option's parameter.
+ */
 function resolveEnvConfig(options: AwsConfig): AwsConfig {
 	return {
 		bucketName: process.env['NX_CACHE_AWS_BUCKET_NAME'] ?? options.bucketName,
@@ -18,23 +24,36 @@ function resolveEnvConfig(options: AwsConfig): AwsConfig {
 
 export function taskRunner(
 	tasks: Parameters<typeof defaultTasksRunner>[0],
+	/**
+	 * Options passed in from the nx.json file. So if you want to add more options,
+	 * you need to add them to the nx.json file and create your own interface for them.
+	 */
 	options: Parameters<typeof defaultTasksRunner>[1] & AwsConfig,
 	context: Parameters<typeof defaultTasksRunner>[2]
 ): DefaultTaskRunnerOutput {
 	const verboseLogging: boolean = process.env['NX_CACHE_VERBOSE_LOGGING'] === 'true';
 	const logger: Logger = new Logger('AWS', verboseLogging);
 	const config: AwsConfig = resolveEnvConfig(options);
+	const awsRemoteCache: AwsCacheRunner = new AwsCacheRunner(config, logger);
 
+	/**
+	 * To make remote cache work, we need to override the default cache runner
+	 * with our own implementation. This is done by passing the remote cache
+	 * implementation to the defaultTasksRunner function.
+	 *
+	 * You can also learn more about the defaultTasksRunner to make your own
+	 * changes to the cache runner.
+	 */
 	return defaultTasksRunner(
 		tasks,
 		{
 			...options,
 			remoteCache: {
 				retrieve: (hash: string, cacheDirectory: string) => {
-					return Promise.resolve(false);
+					return awsRemoteCache.retrieve(hash, cacheDirectory);
 				},
 				store: (hash: string, cacheDirectory: string) => {
-					return Promise.resolve(false);
+					return awsRemoteCache.store(hash, cacheDirectory);
 				}
 			}
 		},

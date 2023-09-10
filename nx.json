@@ -19,7 +19,11 @@
     "customAws": {
       "runner": "@meetjs-2023-nx-remote-caching/remote-cache/task-runners/aws",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "region": "your-region",
+        "bucketName": "your-bucket-name",
+        "accessKeyId": "your-access-key-id",
+        "secretAccessKey": "your-secret-access-key"
       }
     }
   },
