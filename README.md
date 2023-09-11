@@ -87,3 +87,35 @@ To learn more about `defaultTaskRunner`, try to read the source code or types in
 
 ### remoteCache
 
+If you'll dig into `defaultTaskRunner` implementation, you'll find that it uses
+`remoteCache` function to cache the results of the computation. `remoteCache` has
+two methods:
+
+1. `retrieve(hash: string, cacheDirectory: string): Promise<boolean>` - which retrieves the result from the cache
+2. `store(hash: string, cacheDirectory: string): Promise<boolean>` - which stores the result in the cache
+
+If promise resolves with `true`, it means that the result was retrieved/stored
+successfully. If promise resolves with `false`, it means that the result was not
+retrieved/stored successfully.
+
+### Store/Retrieve files
+
+You probably have noticed, that arguments of retrieve/store functions have hash and cacheDirectory.
+Hash is a unique identifier of the result. Cache directory is a path to the directory
+where the result will be stored. 
+
+Every Nx task saves its result in the `node_modules/.cache/nx` directory. So, if you want to
+store the result of the task, you need to copy the result from `${cacheDirectory}/${hash}` to
+your cache provider. Same for retrieve, you need to download the result from your cache provider
+to `${cacheDirectory}/${hash}`.
+
+And that's it. Now you can implement your own `remoteCache` function that will
+use your own infrastructure. You don't need to use AWS, you can use any other
+cloud provider or even your own server.
+
+## Useful links
+
+- [Bojanbass AWS Implementation](https://github.com/bojanbass/nx-aws)
+- [Nx RemoteCache Interface](https://nx.dev/packages/devkit/documents/RemoteCache#interface:-remotecache)
+- [Nx DefaultTasksRunnerOptions Interface](https://nx.dev/packages/devkit/documents/DefaultTasksRunnerOptions)
+- [Nx defaultTasksRunner Function](https://nx.dev/packages/devkit/documents/defaultTasksRunner)
