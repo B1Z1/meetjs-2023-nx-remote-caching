@@ -113,6 +113,11 @@ And that's it. Now you can implement your own `remoteCache` function that will
 use your own infrastructure. You don't need to use AWS, you can use any other
 cloud provider or even your own server.
 
+Remember that Nx updates their API quite often, so you need to check if the
+implementation of `defaultTaskRunner` has changed. If it has changed, you need
+to update your implementation of `remoteCache` function. I caught on it several
+times :D That's the one of the reasons, why it's harder to have own implementation.
+
 ## Useful links
 
 - [Bojanbass AWS Implementation](https://github.com/bojanbass/nx-aws)
