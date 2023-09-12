@@ -25,6 +25,18 @@
         "accessKeyId": "your-access-key-id",
         "secretAccessKey": "your-secret-access-key"
       }
+    },
+    "nxCloud": {
+      "runner": "nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "OWMyZjAwYWQtOTM1Yy00ZDU5LThhMTctNGRjOTQ1MmM3OGE1fHJlYWQtd3JpdGU="
+      }
     }
   },
   "targetDefaults": {
