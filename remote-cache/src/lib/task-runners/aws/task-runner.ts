@@ -3,8 +3,8 @@ import { Logger } from '../../util/Logger';
 import { AwsConfig } from './AwsConfig';
 import { config as dotEnvConfiguration } from 'dotenv';
 import * as process from 'process';
-import { DefaultTaskRunnerOutput } from '../../util/DefaultTaskRunnerOutput';
 import { AwsCacheRunner } from './AwsCacheRunner';
+import { TasksRunner } from 'nx/src/tasks-runner/tasks-runner';
 
 dotEnvConfiguration();
 
@@ -30,7 +30,7 @@ export function taskRunner(
 	 */
 	options: Parameters<typeof defaultTasksRunner>[1] & AwsConfig,
 	context: Parameters<typeof defaultTasksRunner>[2]
-): DefaultTaskRunnerOutput {
+): TasksRunner {
 	const verboseLogging: boolean = process.env['NX_CACHE_VERBOSE_LOGGING'] === 'true';
 	const logger: Logger = new Logger('AWS', verboseLogging);
 	const config: AwsConfig = resolveEnvConfig(options);
